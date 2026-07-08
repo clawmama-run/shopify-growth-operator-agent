@@ -10,9 +10,9 @@ The Skills are intentionally split into reusable modules. Shopify is the first c
 
 These Skills are designed to power the **Shopify Growth Operator Agent** on ClawMama.
 
-> Agent link placeholder: `https://app.clawmama.run/agents/shopify-growth-operator`
+Try the live Agent:
 
-Once the public Agent is published, replace the placeholder above with the live Agent URL.
+https://app.clawmama.run/agents/x356xc
 
 ## Skills
 
