@@ -1,0 +1,19 @@
+{
+  "period": "2026-06-08 to 2026-07-08",
+  "store": "Demo Shopify Store",
+  "note": "Anonymized fixture for inbox-product-feedback-loop and customer-inbox-triage. No real customer data.",
+  "messages": [
+    {"id": "m-001", "date": "2026-06-09", "channel": "email", "category": "product_question", "sku": "KIT-A", "summary": "Is the case in Starter Kit A waterproof or just splash resistant?"},
+    {"id": "m-002", "date": "2026-06-11", "channel": "contact_form", "category": "product_question", "sku": "KIT-A", "summary": "What material is the Starter Kit A pouch made of? Is it vegan?"},
+    {"id": "m-003", "date": "2026-06-12", "channel": "email", "category": "shipping_delay", "sku": "KIT-A", "summary": "Order placed 6 days ago, still not shipped. When will it arrive?"},
+    {"id": "m-004", "date": "2026-06-14", "channel": "email", "category": "product_question", "sku": "KIT-A", "summary": "Does Starter Kit A fit the 13-inch model or only the 15-inch?"},
+    {"id": "m-005", "date": "2026-06-15", "channel": "helpdesk", "category": "refund_return", "sku": "BAG-B", "summary": "Zipper arrived broken on Travel Bag B, wants replacement or refund."},
+    {"id": "m-006", "date": "2026-06-18", "channel": "email", "category": "product_question", "sku": "KIT-A", "summary": "Is Starter Kit A waterproof? Planning to use it kayaking."},
+    {"id": "m-007", "date": "2026-06-20", "channel": "contact_form", "category": "order_status", "sku": "BAG-B", "summary": "No tracking update for 4 days, is my order lost?"},
+    {"id": "m-008", "date": "2026-06-22", "channel": "email", "category": "sizing_or_fit", "sku": "KIT-A", "summary": "Which laptop sizes does the kit sleeve fit? Nothing on the page about dimensions."},
+    {"id": "m-009", "date": "2026-06-25", "channel": "helpdesk", "category": "refund_return", "sku": "KIT-A", "summary": "Wants to return unopened kit, asking about the return window and who pays shipping."},
+    {"id": "m-010", "date": "2026-06-27", "channel": "email", "category": "product_question", "sku": "KIT-A", "summary": "Waterproof rating? IPX something? Page does not say."},
+    {"id": "m-011", "date": "2026-06-30", "channel": "email", "category": "shipping_delay", "sku": "KIT-A", "summary": "Second email — order from last week still processing, event this weekend."},
+    {"id": "m-012", "date": "2026-07-03", "channel": "contact_form", "category": "wholesale_or_partnership", "sku": null, "summary": "Boutique owner asking about wholesale pricing for Starter Kit A."}
+  ]
+}
