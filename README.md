@@ -1,10 +1,10 @@
-# Ecommerce Growth Operator Skills
+# Shopify Growth Operator Agent
 
 Reusable ecommerce operator Skills for ClawMama / OpenClaw-style agents.
 
-This repository packages the first public proof artifact for a **Shopify Growth Operator Agent**: an owner-controlled AI operator that can diagnose store issues, draft product-page improvements, triage customer inbox items, plan social content, and send daily growth notes.
+This repository packages the public Skill kit for a **Shopify Growth Operator Agent**: an owner-controlled AI operator that can diagnose store issues, draft product-page improvements, triage customer inbox items, plan social content, and send daily growth notes.
 
-The Skills are intentionally split into reusable modules. Shopify is the first clear vertical entry point; Amazon, Amazon → DTC, WooCommerce, Etsy, and multichannel variants can reuse the same core playbooks later.
+The Skills are intentionally split into reusable modules, but this repository is Shopify-first. If we add Amazon, WooCommerce, Etsy, or multichannel variants later, the repository can be renamed then.
 
 ## Try the ready-to-use Agent
 
@@ -68,11 +68,11 @@ Give me five TikTok angles for the product that is already converting.
 ## Install / use
 
 ```bash
-npx skills add clawmama-run/ecommerce-growth-operator-skills --skill shopify-store-diagnostics -y
-npx skills add clawmama-run/ecommerce-growth-operator-skills --skill daily-store-growth-digest -y
-npx skills add clawmama-run/ecommerce-growth-operator-skills --skill product-page-optimizer -y
-npx skills add clawmama-run/ecommerce-growth-operator-skills --skill customer-inbox-triage -y
-npx skills add clawmama-run/ecommerce-growth-operator-skills --skill social-content-engine -y
+npx skills add clawmama-run/shopify-growth-operator-agent --skill shopify-store-diagnostics -y
+npx skills add clawmama-run/shopify-growth-operator-agent --skill daily-store-growth-digest -y
+npx skills add clawmama-run/shopify-growth-operator-agent --skill product-page-optimizer -y
+npx skills add clawmama-run/shopify-growth-operator-agent --skill customer-inbox-triage -y
+npx skills add clawmama-run/shopify-growth-operator-agent --skill social-content-engine -y
 ```
 
 ## Demo workflow
