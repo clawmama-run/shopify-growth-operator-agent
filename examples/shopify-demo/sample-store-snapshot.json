@@ -1,0 +1,20 @@
+{
+  "date": "2026-07-08",
+  "store": "Demo Shopify Store",
+  "revenue": 3820,
+  "orders": 42,
+  "aov": 90.95,
+  "sessions": 3100,
+  "conversionRate": 0.0135,
+  "topProducts": [
+    {"sku": "KIT-A", "name": "Starter Kit A", "orders": 18, "inventory": 9, "reorderPoint": 12},
+    {"sku": "BAG-B", "name": "Travel Bag B", "orders": 7, "inventory": 84, "reorderPoint": 20}
+  ],
+  "refundRequests": 2,
+  "abandonedCheckouts": 31,
+  "notes": [
+    "Starter Kit A is below reorder point.",
+    "Three customer messages mention delayed delivery.",
+    "Traffic from short video campaign increased, but product page conversion is below last week."
+  ]
+}
