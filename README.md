@@ -20,6 +20,7 @@ https://app.clawmama.run/agents/x356xc
 
 | Skill | What it does |
 | --- | --- |
+| [`shopify-admin-api-connector`](./skills/shopify/shopify-admin-api-connector/SKILL.md) | Connects to Shopify Admin GraphQL safely: auth paths, env setup, scope planning, connection checks, and preview-first writes. |
 | [`shopify-store-diagnostics`](./skills/shopify/shopify-store-diagnostics/SKILL.md) | Reviews orders, inventory, conversion, refunds, and traffic signals; produces likely causes and next actions. |
 | [`daily-store-growth-digest`](./skills/core/daily-store-growth-digest/SKILL.md) | Turns store metrics and events into a daily owner briefing with priorities. |
 | [`product-page-optimizer`](./skills/core/product-page-optimizer/SKILL.md) | Audits product pages and drafts better title, bullets, FAQ, SEO meta, and offer angles. |
@@ -33,13 +34,14 @@ https://app.clawmama.run/agents/x356xc
 - [`templates/product-page-audit.md`](./templates/product-page-audit.md)
 - [`templates/customer-reply-draft.md`](./templates/customer-reply-draft.md)
 - [`templates/low-stock-alert.md`](./templates/low-stock-alert.md)
+- [`templates/shopify-env.example`](./templates/shopify-env.example)
 
 ## Positioning
 
 This is not a generic ecommerce chatbot. The operating model is:
 
 ```text
-connect store context → monitor signals → diagnose issues → draft actions → ask owner approval when needed → learn from outcomes
+authenticate → connect store context → monitor signals → diagnose issues → draft actions → ask owner approval when needed → execute/verify
 ```
 
 Owner-facing runtime channels such as Telegram or WhatsApp are for the store owner or team. Customer input should arrive through approved external systems such as email inboxes, Shopify, helpdesk tools, forms, or future customer gateways.
@@ -68,12 +70,50 @@ Give me five TikTok angles for the product that is already converting.
 ## Install / use
 
 ```bash
+npx skills add clawmama-run/shopify-growth-operator-agent --skill shopify-admin-api-connector -y
 npx skills add clawmama-run/shopify-growth-operator-agent --skill shopify-store-diagnostics -y
 npx skills add clawmama-run/shopify-growth-operator-agent --skill daily-store-growth-digest -y
 npx skills add clawmama-run/shopify-growth-operator-agent --skill product-page-optimizer -y
 npx skills add clawmama-run/shopify-growth-operator-agent --skill customer-inbox-triage -y
 npx skills add clawmama-run/shopify-growth-operator-agent --skill social-content-engine -y
 ```
+
+## Shopify API connection layer
+
+The most important first capability is not copywriting. It is connecting to Shopify safely. This repo now includes a connector Skill and a small Admin GraphQL helper:
+
+```bash
+cp templates/shopify-env.example .shopify.env
+node scripts/shopify-admin-graphql.mjs check --env .shopify.env
+node scripts/shopify-admin-graphql.mjs products --first 10 --env .shopify.env
+node scripts/shopify-admin-graphql.mjs orders --first 10 --env .shopify.env
+```
+
+Required local env values:
+
+```text
+SHOPIFY_STORE_DOMAIN=your-store.myshopify.com
+SHOPIFY_ADMIN_API_ACCESS_TOKEN=your-admin-api-access-token
+SHOPIFY_API_VERSION=2026-07
+```
+
+Do not commit real tokens. Start with read scopes (`read_products`, `read_orders`, `read_inventory`) and add write scopes only for Skills that have preview-first, owner-approved execution paths.
+
+See:
+
+- [`skills/shopify/shopify-admin-api-connector/SKILL.md`](./skills/shopify/shopify-admin-api-connector/SKILL.md)
+- [`references/shopify-api-auth.md`](./references/shopify-api-auth.md)
+
+## Sources and attribution
+
+This repo acts as an aggregation and adaptation layer. We reviewed public Shopify Skill repositories and official Shopify docs before adding the connector layer. See [`references/github-shopify-skill-sources.md`](./references/github-shopify-skill-sources.md) for source links, observed licenses, and what we learned from each project.
+
+Key references include:
+
+- [Shopify/agent-skills](https://github.com/Shopify/agent-skills) — official Shopify-generated agent Skills for Shopify development surfaces.
+- [lvsao/shopify-skill-hub](https://github.com/lvsao/shopify-skill-hub) — MIT-licensed merchant/operator-oriented Shopify Skill hub.
+- [dragnoir/Shopify-agent-skills](https://github.com/dragnoir/Shopify-agent-skills) — MIT-licensed broad Shopify agent Skill taxonomy.
+- [baslefeber/shopify-skills](https://github.com/baslefeber/shopify-skills) — MIT-licensed production-grade Shopify theme Skills.
 
 ## Demo workflow
 
@@ -126,8 +166,9 @@ Prepare an owner approval request before changing inventory messaging or sending
 
 ## Roadmap
 
-1. Add Shopify connector examples and richer sample JSON/CSV fixtures.
-2. Add Amazon → DTC Skills:
+1. Add OAuth app service example and webhook-based monitoring.
+2. Add richer sample JSON/CSV fixtures and Admin GraphQL query examples.
+3. Add Amazon → DTC Skills:
    - `amazon-to-dtc-planner`
    - `amazon-listing-to-shopify-product-page`
    - `amazon-review-intel`

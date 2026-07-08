@@ -1,0 +1,12 @@
+# Shopify Growth Operator Agent local env
+# Copy to .shopify.env or skill-hub.env. Never commit real values.
+
+SHOPIFY_STORE_DOMAIN=your-store.myshopify.com
+SHOPIFY_ADMIN_API_ACCESS_TOKEN=your-admin-api-access-token
+SHOPIFY_API_VERSION=2026-07
+
+# Optional for a real app/OAuth connector service
+SHOPIFY_CLIENT_ID=
+SHOPIFY_CLIENT_SECRET=
+SHOPIFY_REDIRECT_URI=
+SHOPIFY_SCOPES=read_products,read_orders,read_inventory
