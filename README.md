@@ -75,11 +75,59 @@ npx skills add clawmama-run/ecommerce-growth-operator-skills --skill customer-in
 npx skills add clawmama-run/ecommerce-growth-operator-skills --skill social-content-engine -y
 ```
 
+## Demo workflow
+
+Use the sample store snapshot:
+
+```text
+examples/shopify-demo/sample-store-snapshot.json
+```
+
+Try these prompts with the Agent or with a local Skill-aware client:
+
+```text
+Use the Shopify Store Diagnostics and Daily Store Growth Digest Skills.
+Analyze examples/shopify-demo/sample-store-snapshot.json and give me today's store digest.
+```
+
+Expected shape:
+
+```markdown
+# Daily store growth digest — 2026-07-08
+
+## Snapshot
+- Revenue: $3,820
+- Orders: 42
+- AOV: $90.95
+- Conversion: 1.35%
+
+## Needs attention
+1. Starter Kit A is below reorder point.
+2. Three customer messages mention delayed delivery.
+3. Short-video traffic is up, but product-page conversion is below last week.
+
+## Recommended actions today
+- [ ] Check Starter Kit A replenishment timing.
+- [ ] Draft a shipping-delay reply for affected customers.
+- [ ] Audit the short-video landing product page before scaling traffic.
+```
+
+Then continue:
+
+```text
+Use Product Page Optimizer. Draft a product page audit for Starter Kit A based on the low-stock and traffic signals.
+```
+
+And for owner approval:
+
+```text
+Prepare an owner approval request before changing inventory messaging or sending customer replies.
+```
+
 ## Roadmap
 
-1. Publish Shopify Growth Operator Agent.
-2. Add Shopify connector examples and sample JSON/CSV fixtures.
-3. Add Amazon → DTC Skills:
+1. Add Shopify connector examples and richer sample JSON/CSV fixtures.
+2. Add Amazon → DTC Skills:
    - `amazon-to-dtc-planner`
    - `amazon-listing-to-shopify-product-page`
    - `amazon-review-intel`
