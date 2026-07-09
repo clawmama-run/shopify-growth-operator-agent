@@ -63,6 +63,23 @@ shopify daily report / shopify seo audit
 - **Approval policy as reusable artifact**: MCP servers expose write tools with at most a "be careful" note; none ship an owner-approval policy layer. → built `references/owner-approval-policy.md` as the single source of truth all Skills link to.
 - **GEO for merchants, honestly scoped**: existing GEO tools are marketing-site oriented and often promise visibility. We built `ai-search-readiness-audit` limited to extractability/structure audits with an explicit no-ranking-claims section.
 
+## Copied external Skills — 2026-07-08
+
+The repository now vendors a curated subset of external Skills under `skills/external/`. Selection rule: only copy from repositories with a clear upstream `LICENSE` file; when functionality overlaps, prefer stronger star count, recent update activity, and Shopify owner/operator relevance. Each copied Skill keeps a local `LICENSE.upstream` and `SOURCE.md`.
+
+| Local path | Upstream | License | Selection note |
+| --- | --- | --- | --- |
+| `skills/external/api-graphql/` | `dragnoir/Shopify-agent-skills/skills/api-graphql` | MIT | Selected over smaller Shopify GraphQL Skills because it had stronger stars and recent activity among licensed Shopify API Skill repos. |
+| `skills/external/shopify-product-serp-optimizer/` | `lvsao/shopify-skill-hub/skills/shopify-product-serp-optimizer` | MIT | Recently updated, merchant/operator-oriented SERP metadata workflow. |
+| `skills/external/shopify-gmc-misrepresentation-auditor/` | `lvsao/shopify-skill-hub/skills/shopify-gmc-misrepresentation-auditor` | MIT | Concrete Google Merchant Center risk audit not covered by the base kit. |
+| `skills/external/shopify-markets-localization-auditor/` | `lvsao/shopify-skill-hub/skills/shopify-markets-localization-auditor` | MIT | Adds Markets/localization coverage for cross-border Shopify stores. |
+| `skills/external/shopify-cro-audit/` | `baslefeber/shopify-skills/skills/shopify-cro-audit` | MIT | Storefront CRO audit complements product-page optimizer. |
+| `skills/external/shopify-performance-audit/` | `baslefeber/shopify-skills/skills/shopify-performance-audit` | MIT | Adds Core Web Vitals/performance coverage. |
+| `skills/external/shopify-seo-structured-data/` | `baslefeber/shopify-skills/skills/shopify-seo-structured-data` | MIT | Adds technical SEO/JSON-LD coverage useful for rich results and AI-search readiness. |
+| `skills/external/audit-website-aeo/` | `onvoyage-ai/gtm-engineer-skills/audit-website-aeo` | MIT | Highest-starred AEO/GEO Skill found; copied as a broad website-level complement to the repo's conservative Shopify-specific readiness audit. |
+
+Not copied: `Shopify/agent-skills` has useful official Skill structure and was recently updated, but no clear upstream license file was found in the shallow clone, so it remains reference-only.
+
 ## Attribution rule
 
-If this repo later vendors any MIT-licensed Skill files or scripts from public repositories, keep their original license headers where present and add a source note in the copied file plus this reference page. For source repositories without an explicit license, link and learn from them, but do not copy implementation files.
+For copied external Skills, preserve `LICENSE.upstream`, `SOURCE.md`, and upstream references. For repositories without an explicit license, link and learn from them, but do not copy implementation files.

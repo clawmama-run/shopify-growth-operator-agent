@@ -35,7 +35,8 @@ for (const file of skillFiles) {
     check(`${rel}: frontmatter`, false, "no --- frontmatter block");
     continue;
   }
-  const name = fm[1].match(/^name:\s*(\S+)/m)?.[1];
+  const rawName = fm[1].match(/^name:\s*(.+)$/m)?.[1]?.trim();
+  const name = rawName?.replace(/^["']|["']$/g, "");
   const description = fm[1].match(/^description:\s*(.+)/m)?.[1];
   check(`${rel}: frontmatter has name`, Boolean(name));
   check(`${rel}: frontmatter has description`, Boolean(description?.trim()));

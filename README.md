@@ -39,6 +39,23 @@ https://app.clawmama.run/agents/x356xc
 
 All Skills share one approval boundary: [`references/owner-approval-policy.md`](./references/owner-approval-policy.md) is the single source of truth for which actions always require owner approval.
 
+### External Skills copied into this repo
+
+These optional Skills were copied from MIT-licensed upstream repositories with source notes and upstream license files preserved in each directory. They are not treated as ClawMama-native approval logic; review each one against [`references/owner-approval-policy.md`](./references/owner-approval-policy.md) before wiring it into a live store workflow.
+
+| External Skill | Upstream | Why it is included |
+| --- | --- | --- |
+| [`api-graphql`](./skills/external/api-graphql/SKILL.md) | [`dragnoir/Shopify-agent-skills`](https://github.com/dragnoir/Shopify-agent-skills) | Higher-star, recently updated Shopify GraphQL Skill covering Admin/Storefront API patterns. |
+| [`shopify-product-serp-optimizer`](./skills/external/shopify-product-serp-optimizer/SKILL.md) | [`lvsao/shopify-skill-hub`](https://github.com/lvsao/shopify-skill-hub) | Merchant-oriented SERP metadata workflow with approval-bundle framing. |
+| [`shopify-gmc-misrepresentation-auditor`](./skills/external/shopify-gmc-misrepresentation-auditor/SKILL.md) | [`lvsao/shopify-skill-hub`](https://github.com/lvsao/shopify-skill-hub) | Google Merchant Center misrepresentation audit coverage, useful for suspended or pre-launch stores. |
+| [`shopify-markets-localization-auditor`](./skills/external/shopify-markets-localization-auditor/SKILL.md) | [`lvsao/shopify-skill-hub`](https://github.com/lvsao/shopify-skill-hub) | Shopify Markets/localization audit for cross-border growth. |
+| [`shopify-cro-audit`](./skills/external/shopify-cro-audit/SKILL.md) | [`baslefeber/shopify-skills`](https://github.com/baslefeber/shopify-skills) | Storefront conversion audit that complements product-page optimizer. |
+| [`shopify-performance-audit`](./skills/external/shopify-performance-audit/SKILL.md) | [`baslefeber/shopify-skills`](https://github.com/baslefeber/shopify-skills) | Core Web Vitals and theme performance audit coverage. |
+| [`shopify-seo-structured-data`](./skills/external/shopify-seo-structured-data/SKILL.md) | [`baslefeber/shopify-skills`](https://github.com/baslefeber/shopify-skills) | Technical SEO / JSON-LD checks that support rich results and AI-search readiness. |
+| [`audit-website-aeo`](./skills/external/audit-website-aeo/SKILL.md) | [`onvoyage-ai/gtm-engineer-skills`](https://github.com/onvoyage-ai/gtm-engineer-skills) | Highest-starred AEO/GEO audit Skill found; included as broad website-level complement to our conservative Shopify page-readiness audit. |
+
+Each copied Skill contains a `SOURCE.md` and `LICENSE.upstream`. Repositories without a clear upstream `LICENSE` file remain references only and were not copied.
+
 ### Shared workflow templates
 
 - [`templates/daily-store-digest.md`](./templates/daily-store-digest.md)
