@@ -1,7 +1,0 @@
-.DS_Store
-node_modules/
-.env
-*.log
-.shopify.env
-skill-hub.env
-*.env.local
