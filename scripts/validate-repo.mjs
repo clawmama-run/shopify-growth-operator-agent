@@ -47,7 +47,7 @@ for (const file of skillFiles) {
 // 2. Key Skills listed in README exist on disk, and README links resolve.
 const readme = readFileSync(join(root, "README.md"), "utf8");
 const requiredSkills = [
-  "skills/shopify/shopify-admin-api-connector/SKILL.md",
+  "skills/external/api-graphql/SKILL.md",
   "skills/shopify/shopify-store-diagnostics/SKILL.md",
   "skills/core/daily-store-growth-digest/SKILL.md",
   "skills/core/product-page-optimizer/SKILL.md",
@@ -57,7 +57,7 @@ const requiredSkills = [
   "skills/core/inventory-fulfillment-risk-monitor/SKILL.md",
   "skills/core/inbox-product-feedback-loop/SKILL.md",
   "skills/core/flow-vs-agent-planner/SKILL.md",
-  "skills/core/ai-search-readiness-audit/SKILL.md",
+  "skills/external/audit-website-aeo/SKILL.md",
 ];
 for (const p of requiredSkills) {
   check(`README skill exists: ${p}`, existsSync(join(root, p)));
@@ -102,7 +102,6 @@ const requiredFiles = [
   "templates/customer-reply-draft.md",
   "templates/low-stock-alert.md",
   "templates/daily-ops-checklist.md",
-  "templates/ai-search-readiness-report.md",
   "templates/flow-vs-agent-decision.md",
   "templates/shopify-env.example",
 ];
