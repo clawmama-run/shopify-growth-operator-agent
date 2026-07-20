@@ -61,7 +61,7 @@ shopify daily report / shopify seo audit
 - **Inbox as product feedback loop**: support-bot repos answer customers; none cluster tickets into product-page fixes for the owner. → built `inbox-product-feedback-loop`.
 - **Flow vs agent routing**: "shopify flow automation" results are near-empty; nobody publishes a deterministic-vs-judgment automation planner. → built `flow-vs-agent-planner`.
 - **Approval policy as reusable artifact**: MCP servers expose write tools with at most a "be careful" note; none ship an owner-approval policy layer. → built `references/owner-approval-policy.md` as the single source of truth all Skills link to.
-- **GEO for merchants, honestly scoped**: existing GEO tools are marketing-site oriented and often promise visibility. We built `ai-search-readiness-audit` limited to extractability/structure audits with an explicit no-ranking-claims section.
+- **GEO for merchants, honestly scoped**: the local `ai-search-readiness-audit` was later removed as a duplicate of the much more established `audit-website-aeo`; Shopify-specific fix drafting remains part of the operator workflow rather than a second audit Skill.
 
 ## Copied external Skills — 2026-07-08
 
@@ -69,14 +69,25 @@ The repository now vendors a curated subset of external Skills under `skills/ext
 
 | Local path | Upstream | License | Selection note |
 | --- | --- | --- | --- |
-| `skills/external/api-graphql/` | `dragnoir/Shopify-agent-skills/skills/api-graphql` | MIT | Selected over smaller Shopify GraphQL Skills because it had stronger stars and recent activity among licensed Shopify API Skill repos. |
+| `skills/external/api-graphql/` | `dragnoir/Shopify-agent-skills/skills/api-graphql` | MIT | Selected as the single GraphQL/connection Skill because the licensed upstream had 45★ versus 0★ for the overlapping local repository. ClawMama's executable helper and approval rules are layered onto the vendored Skill. |
 | `skills/external/shopify-product-serp-optimizer/` | `lvsao/shopify-skill-hub/skills/shopify-product-serp-optimizer` | MIT | Recently updated, merchant/operator-oriented SERP metadata workflow. |
 | `skills/external/shopify-gmc-misrepresentation-auditor/` | `lvsao/shopify-skill-hub/skills/shopify-gmc-misrepresentation-auditor` | MIT | Concrete Google Merchant Center risk audit not covered by the base kit. |
 | `skills/external/shopify-markets-localization-auditor/` | `lvsao/shopify-skill-hub/skills/shopify-markets-localization-auditor` | MIT | Adds Markets/localization coverage for cross-border Shopify stores. |
 | `skills/external/shopify-cro-audit/` | `baslefeber/shopify-skills/skills/shopify-cro-audit` | MIT | Storefront CRO audit complements product-page optimizer. |
 | `skills/external/shopify-performance-audit/` | `baslefeber/shopify-skills/skills/shopify-performance-audit` | MIT | Adds Core Web Vitals/performance coverage. |
 | `skills/external/shopify-seo-structured-data/` | `baslefeber/shopify-skills/skills/shopify-seo-structured-data` | MIT | Adds technical SEO/JSON-LD coverage useful for rich results and AI-search readiness. |
-| `skills/external/audit-website-aeo/` | `onvoyage-ai/gtm-engineer-skills/audit-website-aeo` | MIT | Highest-starred AEO/GEO Skill found; copied as a broad website-level complement to the repo's conservative Shopify-specific readiness audit. |
+| `skills/external/audit-website-aeo/` | `onvoyage-ai/gtm-engineer-skills/audit-website-aeo` | MIT | Selected as the single AEO/GEO audit because its upstream had 1,252★ versus 0★ for the overlapping local audit. |
+
+### Deduplication review — 2026-07-20
+
+Conflict rule: first prefer a repository with a meaningful commit in the previous seven days; if neither overlapping source was updated in that window, prefer the higher-starred licensed upstream. Current snapshot: `lvsao/shopify-skill-hub` 4★ / updated in the last week; `dragnoir/Shopify-agent-skills` 45★ / not updated in the last week; `baslefeber/shopify-skills` 0★ / not updated in the last week; `onvoyage-ai/gtm-engineer-skills` 1,252★ / not updated in the last week; this aggregation repository 0★ / not updated in the last week before this review.
+
+Removed overlaps:
+
+- `shopify-admin-api-connector` → absorbed into selected `api-graphql` plus `scripts/shopify-admin-graphql.mjs`, `references/shopify-api-auth.md`, and the shared owner-approval policy.
+- `ai-search-readiness-audit` → replaced by selected `audit-website-aeo`; the duplicate local report template was removed.
+
+Related but non-duplicate Skills remain separate when they own a distinct artifact or decision: product-page copy (`product-page-optimizer`), storefront conversion (`shopify-cro-audit`), product search snippets (`shopify-product-serp-optimizer`), technical structured data (`shopify-seo-structured-data`), and site-wide AI discoverability (`audit-website-aeo`).
 
 Not copied: `Shopify/agent-skills` has useful official Skill structure and was recently updated, but no clear upstream license file was found in the shallow clone, so it remains reference-only.
 

@@ -7,9 +7,43 @@ metadata:
   author: shopify-agent-skills
   version: "1.0"
   shopify-api-version: "2025-01"
+required_environment_variables:
+  - name: SHOPIFY_STORE_DOMAIN
+    prompt: "Exact .myshopify.com store domain"
+    help: "Use your-store.myshopify.com, not the public storefront URL."
+    required_for: "Authenticated Admin GraphQL requests"
+  - name: SHOPIFY_ADMIN_API_ACCESS_TOKEN
+    prompt: "Shopify Admin API access token"
+    help: "Use the minimum required scopes. Never paste the token into chat or commit it."
+    required_for: "Authenticated Admin GraphQL requests"
+  - name: SHOPIFY_API_VERSION
+    prompt: "Shopify API version"
+    help: "Optional. Review quarterly and verify all examples against current Shopify docs."
+    required_for: "Version-pinned Admin GraphQL requests"
 ---
 
 # Shopify GraphQL APIs
+
+## ClawMama integration contract
+
+This vendored Skill is the repository's single Shopify GraphQL connection Skill. It replaces the overlapping local connector while retaining the stronger upstream reference set.
+
+Before using the query examples below:
+
+1. Read `references/shopify-api-auth.md` and `references/owner-approval-policy.md` from the repository root.
+2. Start with read-only scopes and add write scopes only for an approved workflow.
+3. Use the executable helper for connection checks and routine reads:
+
+```bash
+cp templates/shopify-env.example .shopify.env
+node scripts/shopify-admin-graphql.mjs check --env .shopify.env
+node scripts/shopify-admin-graphql.mjs products --first 10 --env .shopify.env
+node scripts/shopify-admin-graphql.mjs orders --first 10 --env .shopify.env
+```
+
+4. Treat all mutations as preview-only until the owner approves the exact affected IDs, current and proposed values, risks, rollback note, and mutation.
+5. Never autonomously refund, cancel an order, alter an address, change inventory or price, publish a product/page, launch a discount, send a customer reply, or change apps/settings.
+6. Shopify API examples age. Verify operation names, fields, and the selected API version against current Shopify documentation before execution.
 
 ## When to use this skill
 

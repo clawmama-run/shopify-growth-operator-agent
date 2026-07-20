@@ -1,8 +1,8 @@
 {
   "name": "shopify-growth-operator-agent",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
-  "description": "Reusable Shopify operator Skills for owner-controlled agents: diagnostics, daily ops, inventory/fulfillment risk, inbox feedback loop, automation planning, and AI-search readiness.",
+  "description": "Deduplicated Shopify operator Skills for owner-controlled agents: GraphQL connection, diagnostics, daily ops, inventory/fulfillment risk, inbox feedback, automation planning, and AEO/GEO auditing.",
   "type": "module",
   "scripts": {
     "validate": "node scripts/validate-repo.mjs"

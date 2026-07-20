@@ -20,7 +20,7 @@ https://app.clawmama.run/agents/x356xc
 
 | Skill | What it does |
 | --- | --- |
-| [`shopify-admin-api-connector`](./skills/shopify/shopify-admin-api-connector/SKILL.md) | Connects to Shopify Admin GraphQL safely: auth paths, env setup, scope planning, connection checks, and preview-first writes. |
+| [`api-graphql`](./skills/external/api-graphql/SKILL.md) | Connects to Shopify Admin/Storefront GraphQL, with ClawMama's local helper, minimum-scope setup, preview-first writes, and owner approval boundaries layered onto the selected upstream Skill. |
 | [`shopify-store-diagnostics`](./skills/shopify/shopify-store-diagnostics/SKILL.md) | Reviews orders, inventory, conversion, refunds, and traffic signals; produces likely causes and next actions. |
 | [`daily-store-growth-digest`](./skills/core/daily-store-growth-digest/SKILL.md) | Turns store metrics and events into a daily owner briefing with priorities. |
 | [`product-page-optimizer`](./skills/core/product-page-optimizer/SKILL.md) | Audits product pages and drafts better title, bullets, FAQ, SEO meta, and offer angles. |
@@ -35,7 +35,6 @@ https://app.clawmama.run/agents/x356xc
 | [`inventory-fulfillment-risk-monitor`](./skills/core/inventory-fulfillment-risk-monitor/SKILL.md) | Detects stockout/oversell risk, aging unfulfilled orders, and delay-complaint clusters before they become refunds and bad reviews. |
 | [`inbox-product-feedback-loop`](./skills/core/inbox-product-feedback-loop/SKILL.md) | Clusters repeated customer questions over time and maps each theme to the product-page or policy gap that causes it, with fix drafts. |
 | [`flow-vs-agent-planner`](./skills/core/flow-vs-agent-planner/SKILL.md) | Routes each recurring task to Shopify Flow (deterministic), the agent (judgment), agent + approval (high-risk), or manual — with Flow recipes and job specs. |
-| [`ai-search-readiness-audit`](./skills/core/ai-search-readiness-audit/SKILL.md) | Audits whether product pages, FAQs, specs, and policy pages contain extractable answers for AI search assistants. Structure audit only — no ranking promises. |
 
 All Skills share one approval boundary: [`references/owner-approval-policy.md`](./references/owner-approval-policy.md) is the single source of truth for which actions always require owner approval.
 
@@ -45,14 +44,14 @@ These optional Skills were copied from MIT-licensed upstream repositories with s
 
 | External Skill | Upstream | Why it is included |
 | --- | --- | --- |
-| [`api-graphql`](./skills/external/api-graphql/SKILL.md) | [`dragnoir/Shopify-agent-skills`](https://github.com/dragnoir/Shopify-agent-skills) | Higher-star, recently updated Shopify GraphQL Skill covering Admin/Storefront API patterns. |
+| [`api-graphql`](./skills/external/api-graphql/SKILL.md) | [`dragnoir/Shopify-agent-skills`](https://github.com/dragnoir/Shopify-agent-skills) | Selected over the overlapping local connector because its licensed upstream has the stronger star count (45★ vs 0★); adapted locally with the executable helper and owner-approval policy. |
 | [`shopify-product-serp-optimizer`](./skills/external/shopify-product-serp-optimizer/SKILL.md) | [`lvsao/shopify-skill-hub`](https://github.com/lvsao/shopify-skill-hub) | Merchant-oriented SERP metadata workflow with approval-bundle framing. |
 | [`shopify-gmc-misrepresentation-auditor`](./skills/external/shopify-gmc-misrepresentation-auditor/SKILL.md) | [`lvsao/shopify-skill-hub`](https://github.com/lvsao/shopify-skill-hub) | Google Merchant Center misrepresentation audit coverage, useful for suspended or pre-launch stores. |
 | [`shopify-markets-localization-auditor`](./skills/external/shopify-markets-localization-auditor/SKILL.md) | [`lvsao/shopify-skill-hub`](https://github.com/lvsao/shopify-skill-hub) | Shopify Markets/localization audit for cross-border growth. |
 | [`shopify-cro-audit`](./skills/external/shopify-cro-audit/SKILL.md) | [`baslefeber/shopify-skills`](https://github.com/baslefeber/shopify-skills) | Storefront conversion audit that complements product-page optimizer. |
 | [`shopify-performance-audit`](./skills/external/shopify-performance-audit/SKILL.md) | [`baslefeber/shopify-skills`](https://github.com/baslefeber/shopify-skills) | Core Web Vitals and theme performance audit coverage. |
 | [`shopify-seo-structured-data`](./skills/external/shopify-seo-structured-data/SKILL.md) | [`baslefeber/shopify-skills`](https://github.com/baslefeber/shopify-skills) | Technical SEO / JSON-LD checks that support rich results and AI-search readiness. |
-| [`audit-website-aeo`](./skills/external/audit-website-aeo/SKILL.md) | [`onvoyage-ai/gtm-engineer-skills`](https://github.com/onvoyage-ai/gtm-engineer-skills) | Highest-starred AEO/GEO audit Skill found; included as broad website-level complement to our conservative Shopify page-readiness audit. |
+| [`audit-website-aeo`](./skills/external/audit-website-aeo/SKILL.md) | [`onvoyage-ai/gtm-engineer-skills`](https://github.com/onvoyage-ai/gtm-engineer-skills) | Selected as the single AEO/GEO audit because its upstream leads the overlap set by a wide margin (1,252★ vs 0★); Shopify-specific remediation remains a downstream operator task. |
 
 Each copied Skill contains a `SOURCE.md` and `LICENSE.upstream`. Repositories without a clear upstream `LICENSE` file remain references only and were not copied.
 
@@ -64,7 +63,6 @@ Each copied Skill contains a `SOURCE.md` and `LICENSE.upstream`. Repositories wi
 - [`templates/customer-reply-draft.md`](./templates/customer-reply-draft.md)
 - [`templates/low-stock-alert.md`](./templates/low-stock-alert.md)
 - [`templates/daily-ops-checklist.md`](./templates/daily-ops-checklist.md)
-- [`templates/ai-search-readiness-report.md`](./templates/ai-search-readiness-report.md)
 - [`templates/flow-vs-agent-decision.md`](./templates/flow-vs-agent-decision.md)
 - [`templates/shopify-env.example`](./templates/shopify-env.example)
 
@@ -81,10 +79,10 @@ The kit is organized around what a store owner actually asks during a day, not a
 | Handle this customer message safely. | `customer-inbox-triage` | Per message |
 | Why do customers keep asking the same thing? | `inbox-product-feedback-loop` | Weekly |
 | Make this product page better. | `product-page-optimizer` | On demand |
-| Can AI assistants get accurate answers from my pages? | `ai-search-readiness-audit` | On demand / pre-launch |
+| Can AI assistants get accurate answers from my pages? | `audit-website-aeo` | On demand / pre-launch |
 | Which of my chores should be automated, and how? | `flow-vs-agent-planner` | On demand |
 | Give me content angles for what's already working. | `social-content-engine` | On demand |
-| Connect to my store safely in the first place. | `shopify-admin-api-connector` | Setup |
+| Connect to my store safely in the first place. | `api-graphql` | Setup |
 
 ### What is still missing from a real Shopify operator?
 
@@ -100,7 +98,7 @@ Honest gaps we have not covered yet (candidates for the next round):
 
 From the GitHub review in [`references/github-shopify-skill-sources.md`](./references/github-shopify-skill-sources.md):
 
-- **Integrate / reference**: Shopify Admin API access has solid open candidates — community MCP servers ([Cesarjoquin/shopify-mcp](https://github.com/Cesarjoquin/shopify-mcp), [callobuzz/cob-shopify-mcp](https://github.com/callobuzz/cob-shopify-mcp)) can replace or complement our `scripts/shopify-admin-graphql.mjs` helper if their license and deployment fit the project. GEO/AEO audit projects ([onvoyage-ai/gtm-engineer-skills](https://github.com/onvoyage-ai/gtm-engineer-skills), [Auriti-Labs/geo-optimizer-skill](https://github.com/Auriti-Labs/geo-optimizer-skill)) informed the check taxonomy in `ai-search-readiness-audit`; do not vendor their code unless license is explicitly confirmed.
+- **Integrate / reference**: Shopify Admin API access has solid open candidates — community MCP servers ([Cesarjoquin/shopify-mcp](https://github.com/Cesarjoquin/shopify-mcp), [callobuzz/cob-shopify-mcp](https://github.com/callobuzz/cob-shopify-mcp)) can replace or complement our `scripts/shopify-admin-graphql.mjs` helper if their license and deployment fit the project. `api-graphql` is the selected GraphQL Skill; `audit-website-aeo` is the selected AEO/GEO Skill.
 - **Built ourselves**: the operator judgment layer had no reusable open-source equivalent — daily ops checklist, inventory→refund risk chain, inbox-as-feedback-loop, Flow-vs-agent routing, and the owner-approval policy were all written for this repo because GitHub search found only notification pingers, customer-facing chatbots, or autogenerated stubs in those niches.
 
 ## Positioning
@@ -137,7 +135,7 @@ Give me five TikTok angles for the product that is already converting.
 ## Install / use
 
 ```bash
-npx skills add clawmama-run/shopify-growth-operator-agent --skill shopify-admin-api-connector -y
+npx skills add clawmama-run/shopify-growth-operator-agent --skill api-graphql -y
 npx skills add clawmama-run/shopify-growth-operator-agent --skill shopify-store-diagnostics -y
 npx skills add clawmama-run/shopify-growth-operator-agent --skill daily-store-growth-digest -y
 npx skills add clawmama-run/shopify-growth-operator-agent --skill product-page-optimizer -y
@@ -147,7 +145,6 @@ npx skills add clawmama-run/shopify-growth-operator-agent --skill daily-ops-chec
 npx skills add clawmama-run/shopify-growth-operator-agent --skill inventory-fulfillment-risk-monitor -y
 npx skills add clawmama-run/shopify-growth-operator-agent --skill inbox-product-feedback-loop -y
 npx skills add clawmama-run/shopify-growth-operator-agent --skill flow-vs-agent-planner -y
-npx skills add clawmama-run/shopify-growth-operator-agent --skill ai-search-readiness-audit -y
 ```
 
 ## Validate the repo locally
@@ -185,7 +182,7 @@ Do not commit real tokens. Start with read scopes (`read_products`, `read_orders
 
 See:
 
-- [`skills/shopify/shopify-admin-api-connector/SKILL.md`](./skills/shopify/shopify-admin-api-connector/SKILL.md)
+- [`skills/external/api-graphql/SKILL.md`](./skills/external/api-graphql/SKILL.md)
 - [`references/shopify-api-auth.md`](./references/shopify-api-auth.md)
 
 ## Sources and attribution
